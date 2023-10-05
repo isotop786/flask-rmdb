@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<form method="POST" action="/tasks" enctype=multipart/form-data>
+    <div>{{ form.title.label }}</div>
+    <div >{{ form.title(class="form-control") }}</div>
+    <div>{{ form.description.label }}</div>
+    <div>{{ form.description(class="form-control") }}</div>
+    <!-- <div>{{ form.image() }}</div> -->
+    <input type="file" name="file" accept="image/*">
+    <div>
+        <button type="submit" class="my-3 btn btn-primary">Submit</button>
+    </div>
+</form>
+
+{% endblock %}
